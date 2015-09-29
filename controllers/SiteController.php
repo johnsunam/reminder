@@ -9,7 +9,8 @@ use yii\web\Controller;
 use yii\filters\VerbFilter;
 use app\models\LoginForm;
 use app\models\ContactForm;
-
+use app\models\Events;
+use app\models\Addresses;
 class SiteController extends Controller
 {
     public function behaviors()
@@ -96,4 +97,17 @@ class SiteController extends Controller
 
     }
 
+    public function actionSubmit()
+    {
+        $event= new Events();
+        $address=new Addresses();
+        if($event->load(yii::$app->request->post()) && $event->save() && $address->load(yii::$app->request->post()) && $address->save())
+        {
+            return $this->render('sucess');
+
+        }
+        else{
+            return $this->return('unsucess');
+        }
+    }
 }

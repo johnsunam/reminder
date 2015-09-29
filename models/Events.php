@@ -6,6 +6,9 @@ Class Events extends \yii\db\ActiveRecord
     public $event_date;
     public $description;
 
+    public static function tableNames(){
+        return 'events';
+    }
 public function rules()
 {
         return
